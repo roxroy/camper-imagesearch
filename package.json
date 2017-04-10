@@ -1,0 +1,28 @@
+{
+  "name": "camper-imagesearch",
+  "version": "1.0.0",
+  "description": "Image Search Abstraction Layer",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/roxroy/camper-imagesearch.git"
+  },
+  "keywords": [
+    "microservice",
+    "node"
+  ],
+  "author": "roxroy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/roxroy/camper-imagesearch/issues"
+  },
+  "homepage": "https://github.com/roxroy/camper-imagesearch#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "mongoose": "^4.9.3",
+    "pug": "^2.0.0-beta11"
+  }
+}
