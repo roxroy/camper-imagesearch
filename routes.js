@@ -1,4 +1,5 @@
-var mongoose = require('mongoose')
+var mongoose = require('mongoose'),
+    HistoryModel = require('./models/historyModel');
 
 mongoose.connect('mongodb://localhost/imagesearch');
 
@@ -8,9 +9,18 @@ exports.index = function(req, res){
 };
 
 exports.search = function(req, res){
+  new HistoryModel({
+    term : "a"
+  }).save();
+  
   return res.json('Show search'); 
 };
 
 exports.latest = function(req, res){
-  return res.json('Show latest'); 
+    HistoryModel.find({}, '-_id term when', function (err, histories) {
+      if ( err ) {
+          return res.json({Error: 'Sorry, something went wrong!'});
+      }
+      return res.json(histories); 
+    });
 };
