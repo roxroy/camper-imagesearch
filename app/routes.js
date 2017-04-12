@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-    HistoryModel = require('./models/historyModel');
+    HistoryModel = require('./historyModel');
 
 mongoose.connect('mongodb://localhost/imagesearch');
 
@@ -9,11 +9,13 @@ exports.index = function(req, res){
 };
 
 exports.search = function(req, res){
+  var term = req.params.term;
+  var offset = req.query.offset;
   new HistoryModel({
-    term : "a"
+    term : term + ' ' + offset
   }).save();
   
-  return res.json('Show search'); 
+  return res.json('Show search: ' + term + ' ' + offset ); 
 };
 
 exports.latest = function(req, res){
