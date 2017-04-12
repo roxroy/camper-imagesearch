@@ -1,7 +1,15 @@
 var mongoose = require('mongoose'),
-    HistoryModel = require('./historyModel');
+    url = require('url'),
+    path = require("path"),
+    HistoryModel = require('./historyModel'),
+    searchService = require('./searchService');
 
 mongoose.connect('mongodb://localhost/imagesearch');
+
+const getTerm = function(req_url){
+  var parsed = url.parse(req_url);
+  return path.basename(parsed.pathname);
+}
 
 exports.index = function(req, res){
   var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
@@ -9,13 +17,14 @@ exports.index = function(req, res){
 };
 
 exports.search = function(req, res){
-  var term = req.params.term;
-  var offset = req.query.offset;
-  new HistoryModel({
-    term : term + ' ' + offset
-  }).save();
+  var term = getTerm(req.url) ;
+  var offset = req.query.offset || 1 ;
   
-  return res.json('Show search: ' + term + ' ' + offset ); 
+  new HistoryModel({
+    term : term
+  }).save();
+
+  searchService.getResults(res, {term: term, offset: offset} );
 };
 
 exports.latest = function(req, res){
