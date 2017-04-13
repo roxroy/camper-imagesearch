@@ -4,7 +4,8 @@ var mongoose = require('mongoose'),
     HistoryModel = require('./historyModel'),
     searchService = require('./searchService');
 
-mongoose.connect('mongodb://localhost/imagesearch');
+var db_url = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/imagesearch';
+mongoose.connect(db_url);
 
 const getTerm = function(req_url){
   var parsed = url.parse(req_url);

@@ -6,4 +6,4 @@ var HistorySchema   = new Schema({
     when: { type: Date, default: Date.now}
 });
 
-module.exports = mongoose.model('HistoryModel', HistorySchema);
+module.exports = mongoose.model('HistoryModel', HistorySchema, 'History');
