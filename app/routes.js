@@ -9,7 +9,7 @@ mongoose.connect(db_url);
 
 const getTerm = function(req_url){
   var parsed = url.parse(req_url);
-  return path.basename(parsed.pathname);
+  return decodeURI( path.basename(parsed.pathname) );
 }
 
 exports.index = function(req, res){

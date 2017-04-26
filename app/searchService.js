@@ -47,6 +47,7 @@ const make_search_url = function(option) {
 function getResults (res, option) {
   var url = make_search_url(option);
   
+  //return res.json (option)  ;
   //return res.json(projection(mockData)); 
   getContent(url)
     .then((str) => {
